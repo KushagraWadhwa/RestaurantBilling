@@ -1,0 +1,138 @@
+import tkinter as tk
+from tkinter import *
+import random
+from tkinter import messagebox
+app=tk.Tk()
+app.geometry("475x240")
+app.configure(bg="LightGrey")
+app.title("Restaurant Billing System")
+Name=Label(font=("Times", 33, "bold"),text="PUNJAB DA PUTTAR",bg="LightGrey").pack()
+Veg=Label(font=("Times", 22, "bold"),text="Pure Vegetarian",fg="Green",bg="LightGrey").pack()
+FOR = Frame(app,width=400,height=400)
+FOR.pack(side=LEFT)
+
+def Reference():
+
+    if (Cheese_Burger.get()==""):
+        Total_Cheese_Burger=0
+    else:
+        Total_Cheese_Burger=int(Cheese_Burger.get())
+        
+
+    if (French_Fries.get()==""):
+        Total_French_Fries=0
+    else:
+        Total_French_Fries=int(French_Fries.get())
+
+
+    
+    if (Hakka_Noodles.get()==""):
+        Total_Hakka_Noodles=0
+    else:
+        Total_Hakka_Noodles=int(Hakka_Noodles.get())
+
+        
+     
+    if (Soft_Drink.get()==""):
+        Total_Soft_Drink=0
+    else:
+        Total_Soft_Drink=int(Soft_Drink.get())
+
+
+    if (Grill_Sandwich.get()==""):
+        Total_Grill_Sandwich=0
+    else:
+        Total_Grill_Sandwich=int(Grill_Sandwich.get())
+
+
+    Cost_of_Cheese_Burger = Total_Cheese_Burger * 100
+    Cost_of_French_Fries = Total_French_Fries * 50
+    Cost_of_Hakka_Noodles = Total_Hakka_Noodles * 55
+    Cost_of_Soft_Drink = Total_Soft_Drink * 35
+    Cost_Grill_Sandwich = Total_Grill_Sandwich * 90
+
+    Cost_Of_Meal = "Rs. ",str(format(Cost_of_Cheese_Burger+Cost_of_French_Fries+Cost_of_Hakka_Noodles+Cost_of_Soft_Drink+Cost_Grill_Sandwich))
+
+    Cost.set(Cost_Of_Meal)
+    
+def kill_app():
+    
+    kill_app = messagebox.askyesno("Quit","Do You Want To Quit")
+    if kill_app == 'yes':
+       app.destroy()
+    else:
+        messagebox.showinfo('Return','You will now return to the application screen')
+
+def clearscreen():
+    
+    Cheese_Burger.set("")
+    French_Fries.set("")
+    Hakka_Noodles.set("")
+    Soft_Drink.set("")
+    Grill_Sandwich.set("")
+    Cost.set("")
+
+def printreceipt():
+
+    print=messagebox.askyesno("Do You Want To Print")
+    Cheese_Burger.set("")
+    French_Fries.set("")
+    Hakka_Noodles.set("")
+    Soft_Drink.set("")
+    Grill_Sandwich.set("")
+    Cost.set("")
+
+Cheese_Burger = StringVar()
+French_Fries = StringVar()
+Hakka_Noodles = StringVar()
+Soft_Drink = StringVar()
+Grill_Sandwich = StringVar()
+Cost = StringVar()
+
+label_Cheese_Burger = Label(FOR,text="Cheese Burger(Rs.100 each)",anchor="e")
+label_Cheese_Burger.grid(row=0,column=0)
+text_Cheese_Burger = Entry(FOR,textvariable=Cheese_Burger)
+text_Cheese_Burger.grid(row=0,column=1)
+
+
+label_French_Fries = Label(FOR,text="French Fries(Rs.50 each)",anchor="e")
+label_French_Fries.grid(row=1, column=0)
+text_French_Fries = Entry(FOR,textvariable=French_Fries)
+text_French_Fries.grid(row=1,column=1)
+
+
+label_Hakka_Noodles = Label(FOR,text="Hakka Noodles(Rs.55 each)",anchor="e")
+label_Hakka_Noodles.grid(row=2, column=0)
+test_Hakka_Noodles = Entry(FOR,textvariable=Hakka_Noodles)
+test_Hakka_Noodles.grid(row=2,column=1)
+
+
+label_Soft_Drink = Label(FOR,text="Soft Drink(Rs.35 each)",anchor="e")
+label_Soft_Drink.grid(row=3, column=0)
+text_Soft_Drink = Entry(FOR,textvariable=Soft_Drink)
+text_Soft_Drink.grid(row=3,column=1)
+
+label_Grill_Sandwich = Label(FOR,text="Grill Sandwich(Rs.90 each)",anchor="e")
+label_Grill_Sandwich.grid(row=4, column=0)
+text_Grill_Sandwich = Entry(FOR,textvariable=Grill_Sandwich)
+text_Grill_Sandwich.grid(row=4,column=1)
+
+label_Cost_Of_Meal = Label(FOR,text="Cost of Meal",anchor="e")
+label_Cost_Of_Meal.grid(row=1, column=2)
+text_Cost_Of_Meal = Entry(FOR,textvariable=Cost)
+text_Cost_Of_Meal.grid(row=1,column=3)
+
+
+Total = Button(FOR,font=("Times",11, "bold"),text="Total",command=Reference,bg="Green",height=1,width=5,borderwidth=5)
+Total.grid(row=7,column=0)
+
+Print = Button(FOR,font=("Times",11, "bold"),text="Print",command=printreceipt,bg="Blue",height=1,width=5,borderwidth=5)
+Print.grid(row=7,column=1)
+
+Reset = Button(FOR,font=("Times",11, "bold"),text="Reset",command=clearscreen,bg="Orange",height=1,width=5,borderwidth=5)
+Reset.grid(row=7,column=2)
+
+Exit = Button(FOR,font=("Times",11, "bold"),text="Exit",command=kill_app,bg="Red",height=1,width=5,borderwidth=5)
+Exit.grid(row=7,column=3)
+
+app.mainloop()
